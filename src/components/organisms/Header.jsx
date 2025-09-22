@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import { cn } from "@/utils/cn";
+import { AuthContext } from "../../App";
 
 const Header = ({ onAddContact, onAddCompany }) => {
   const location = useLocation();
@@ -19,6 +20,21 @@ const Header = ({ onAddContact, onAddCompany }) => {
     }
   };
   
+const LogoutButton = () => {
+    const { logout } = useContext(AuthContext);
+    
+    return (
+      <Button 
+        variant="ghost" 
+        onClick={logout}
+        className="flex items-center space-x-2"
+      >
+        <ApperIcon name="LogOut" className="w-4 h-4" />
+        <span>Logout</span>
+      </Button>
+    );
+  };
+
   return (
     <header className="bg-surface border-b border-slate-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,12 +80,15 @@ const Header = ({ onAddContact, onAddCompany }) => {
                 </div>
               </button>
             </nav>
-          </div>
+</div>
           
-          <Button onClick={handleAddClick} className="flex items-center space-x-2">
-            <ApperIcon name="Plus" className="w-4 h-4" />
-            <span>Add {isContactsActive ? "Contact" : "Company"}</span>
-          </Button>
+          <div className="flex items-center space-x-3">
+            <Button onClick={handleAddClick} className="flex items-center space-x-2">
+              <ApperIcon name="Plus" className="w-4 h-4" />
+              <span>Add {isContactsActive ? "Contact" : "Company"}</span>
+            </Button>
+            <LogoutButton />
+          </div>
         </div>
       </div>
     </header>
