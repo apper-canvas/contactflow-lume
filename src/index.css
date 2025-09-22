@@ -1,0 +1,76 @@
+@import 'react-toastify/dist/ReactToastify.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-background text-slate-900;
+    margin: 0;
+    min-height: 100vh;
+  }
+  
+  #root {
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-white hover:bg-slate-50 text-slate-700 font-medium py-2 px-4 rounded-md border border-slate-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+  
+  .btn-ghost {
+    @apply hover:bg-slate-100 text-slate-700 font-medium py-2 px-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+  
+  .card {
+    @apply bg-surface rounded-lg shadow-card hover:shadow-card-hover transition-all duration-200 border border-slate-200;
+  }
+  
+  .input-field {
+    @apply w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200;
+  }
+  
+  .avatar {
+    @apply rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-semibold;
+  }
+}
+
+/* Toast Overrides */
+.Toastify__toast-container {
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  @apply rounded-lg shadow-lg;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  min-height: 60px;
+}
+
+.Toastify__toast--success {
+  @apply bg-surface border-l-4 border-l-success text-slate-900;
+}
+
+.Toastify__toast--error {
+  @apply bg-surface border-l-4 border-l-error text-slate-900;
+}
+
+.Toastify__toast--info {
+  @apply bg-surface border-l-4 border-l-info text-slate-900;
+}
+
+.Toastify__progress-bar {
+  @apply bg-primary;
+}
