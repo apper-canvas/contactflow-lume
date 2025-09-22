@@ -231,5 +231,3 @@ class CompaniesService {
 }
 
 export default new CompaniesService();
-
-export default new CompaniesService();

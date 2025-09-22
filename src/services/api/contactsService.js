@@ -311,5 +311,3 @@ class ContactsService {
 }
 
 export default new ContactsService();
-
-export default new ContactsService();
