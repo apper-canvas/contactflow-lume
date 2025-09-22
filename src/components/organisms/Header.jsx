@@ -5,18 +5,21 @@ import Button from "@/components/atoms/Button";
 import { cn } from "@/utils/cn";
 import { AuthContext } from "../../App";
 
-const Header = ({ onAddContact, onAddCompany }) => {
+const Header = ({ onAddContact, onAddCompany, onAddLead }) => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  const isContactsActive = location.pathname === "/contacts";
+const isContactsActive = location.pathname === "/contacts";
   const isCompaniesActive = location.pathname === "/companies";
+  const isLeadsActive = location.pathname === "/leads";
   
   const handleAddClick = () => {
-    if (isContactsActive) {
+if (isContactsActive) {
       onAddContact();
     } else if (isCompaniesActive) {
       onAddCompany();
+    } else if (isLeadsActive) {
+      onAddLead();
     }
   };
   
@@ -77,15 +80,27 @@ const LogoutButton = () => {
                 <div className="flex items-center space-x-2">
                   <ApperIcon name="Building2" className="w-4 h-4" />
                   <span>Companies</span>
-                </div>
+</div>
+              </button>
+              <button
+                onClick={() => navigate('/leads')}
+                className={cn(
+                  "flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors",
+                  isLeadsActive 
+                    ? "bg-primary text-white" 
+                    : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                )}
+              >
+                <ApperIcon name="Mail" className="w-5 h-5" />
+                <span>Leads</span>
               </button>
             </nav>
 </div>
           
           <div className="flex items-center space-x-3">
-            <Button onClick={handleAddClick} className="flex items-center space-x-2">
+<Button onClick={handleAddClick} className="flex items-center space-x-2">
               <ApperIcon name="Plus" className="w-4 h-4" />
-              <span>Add {isContactsActive ? "Contact" : "Company"}</span>
+              <span>Add {isContactsActive ? "Contact" : isCompaniesActive ? "Company" : "Lead"}</span>
             </Button>
             <LogoutButton />
           </div>

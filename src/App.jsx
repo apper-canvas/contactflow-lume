@@ -1,15 +1,16 @@
-import { createContext, useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { createContext, useEffect, useState } from "react";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import { setUser, clearUser } from './store/userSlice';
-import Layout from "@/components/organisms/Layout";
-import ContactsPage from "@/components/pages/ContactsPage";
+import LeadsPage from "@/components/pages/LeadsPage";
 import CompaniesPage from "@/components/pages/CompaniesPage";
-import Login from '@/components/pages/Login';
-import Signup from '@/components/pages/Signup';
-import Callback from '@/components/pages/Callback';
-import ErrorPage from '@/components/pages/ErrorPage';
+import Callback from "@/components/pages/Callback";
+import ContactsPage from "@/components/pages/ContactsPage";
+import Login from "@/components/pages/Login";
+import Signup from "@/components/pages/Signup";
+import ErrorPage from "@/components/pages/ErrorPage";
+import Layout from "@/components/organisms/Layout";
+import { clearUser, setUser } from "@/store/userSlice";
 
 // Create auth context
 export const AuthContext = createContext(null);
@@ -144,7 +145,14 @@ function App() {
             ) : (
               <Navigate to="/login" replace />
             )
-          } />
+} />
+          <Route path="/leads" element={isAuthenticated ? (
+            <Layout>
+              <LeadsPage />
+            </Layout>
+          ) : (
+            <Navigate to="/login" replace />
+          )} />
         </Routes>
         
         <ToastContainer
