@@ -2,14 +2,15 @@ import React, { createContext, useEffect, useState } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import LeadsPage from "@/components/pages/LeadsPage";
 import CompaniesPage from "@/components/pages/CompaniesPage";
+import LeadsPage from "@/components/pages/LeadsPage";
 import Callback from "@/components/pages/Callback";
 import ContactsPage from "@/components/pages/ContactsPage";
 import Login from "@/components/pages/Login";
 import Signup from "@/components/pages/Signup";
 import ErrorPage from "@/components/pages/ErrorPage";
 import Layout from "@/components/organisms/Layout";
+import Header from "@/components/organisms/Header";
 import { clearUser, setUser } from "@/store/userSlice";
 
 // Create auth context
@@ -137,7 +138,7 @@ function App() {
               <Navigate to="/login" replace />
             )
           } />
-          <Route path="/companies" element={
+<Route path="/companies" element={
             isAuthenticated ? (
               <Layout>
                 <CompaniesPage />
@@ -145,9 +146,14 @@ function App() {
             ) : (
               <Navigate to="/login" replace />
             )
-} />
+          } />
           <Route path="/leads" element={isAuthenticated ? (
             <Layout>
+              <Header 
+                onAddContact={() => {}}
+                onAddCompany={() => {}}
+                onAddLead={() => {}}
+              />
               <LeadsPage />
             </Layout>
           ) : (
