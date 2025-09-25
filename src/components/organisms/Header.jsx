@@ -8,11 +8,11 @@ import { AuthContext } from "../../App";
 const Header = ({ onAddContact, onAddCompany, onAddLead }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  
 const isContactsActive = location.pathname === "/contacts";
   const isCompaniesActive = location.pathname === "/companies";
   const isLeadsActive = location.pathname === "/leads";
-  
+  const isProfileActive = location.pathname === "/profile";
+  const isRolesActive = location.pathname === "/roles";
   const handleAddClick = () => {
 if (isContactsActive) {
       onAddContact();
@@ -52,7 +52,7 @@ const LogoutButton = () => {
               </h1>
             </div>
             
-            <nav className="flex space-x-1">
+<nav className="flex space-x-1">
               <button
                 onClick={() => navigate("/contacts")}
                 className={cn(
@@ -80,8 +80,9 @@ const LogoutButton = () => {
                 <div className="flex items-center space-x-2">
                   <ApperIcon name="Building2" className="w-4 h-4" />
                   <span>Companies</span>
-</div>
+                </div>
               </button>
+              
               <button
                 onClick={() => navigate('/leads')}
                 className={cn(
@@ -93,6 +94,36 @@ const LogoutButton = () => {
               >
                 <ApperIcon name="Mail" className="w-5 h-5" />
                 <span>Leads</span>
+              </button>
+              
+              <button
+                onClick={() => navigate("/profile")}
+                className={cn(
+                  "px-4 py-2 rounded-md font-medium transition-all duration-200",
+                  isProfileActive
+                    ? "bg-primary-50 text-primary-700 border border-primary-200"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                )}
+              >
+                <div className="flex items-center space-x-2">
+                  <ApperIcon name="User" className="w-4 h-4" />
+                  <span>Profile</span>
+                </div>
+              </button>
+              
+              <button
+                onClick={() => navigate("/roles")}
+                className={cn(
+                  "px-4 py-2 rounded-md font-medium transition-all duration-200",
+                  isRolesActive
+                    ? "bg-primary-50 text-primary-700 border border-primary-200"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                )}
+              >
+                <div className="flex items-center space-x-2">
+                  <ApperIcon name="Shield" className="w-4 h-4" />
+                  <span>Roles</span>
+                </div>
               </button>
             </nav>
 </div>

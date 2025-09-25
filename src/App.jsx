@@ -6,13 +6,14 @@ import CompaniesPage from "@/components/pages/CompaniesPage";
 import LeadsPage from "@/components/pages/LeadsPage";
 import Callback from "@/components/pages/Callback";
 import ContactsPage from "@/components/pages/ContactsPage";
+import UserProfilePage from "@/components/pages/UserProfilePage";
+import RolesPage from "@/components/pages/RolesPage";
 import Login from "@/components/pages/Login";
 import Signup from "@/components/pages/Signup";
 import ErrorPage from "@/components/pages/ErrorPage";
 import Layout from "@/components/organisms/Layout";
 import Header from "@/components/organisms/Header";
 import { clearUser, setUser } from "@/store/userSlice";
-
 // Create auth context
 export const AuthContext = createContext(null);
 
@@ -129,7 +130,7 @@ function App() {
               <Navigate to="/login" replace />
             )
           } />
-          <Route path="/contacts" element={
+<Route path="/contacts" element={
             isAuthenticated ? (
               <Layout>
                 <ContactsPage />
@@ -138,10 +139,28 @@ function App() {
               <Navigate to="/login" replace />
             )
           } />
-<Route path="/companies" element={
+          <Route path="/companies" element={
             isAuthenticated ? (
               <Layout>
                 <CompaniesPage />
+              </Layout>
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          } />
+          <Route path="/profile" element={
+            isAuthenticated ? (
+              <Layout>
+                <UserProfilePage />
+              </Layout>
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          } />
+          <Route path="/roles" element={
+            isAuthenticated ? (
+              <Layout>
+                <RolesPage />
               </Layout>
             ) : (
               <Navigate to="/login" replace />
