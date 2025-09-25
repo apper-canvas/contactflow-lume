@@ -148,9 +148,10 @@ function App() {
               <Navigate to="/login" replace />
             )
           } />
-          <Route path="/profile" element={
+<Route path="/profile" element={
             isAuthenticated ? (
               <Layout>
+                <Header onAddContact={() => {}} onAddCompany={() => {}} onAddLead={() => {}} />
                 <UserProfilePage />
               </Layout>
             ) : (
@@ -158,8 +159,9 @@ function App() {
             )
           } />
           <Route path="/roles" element={
-            isAuthenticated ? (
+isAuthenticated ? (
               <Layout>
+                <Header onAddContact={() => {}} onAddCompany={() => {}} onAddLead={() => {}} />
                 <RolesPage />
               </Layout>
             ) : (
